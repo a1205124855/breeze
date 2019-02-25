@@ -42,6 +42,10 @@ export PATH=$PATH:/root/ss/shadowsocks-libev/src
 kill $(ps -ef | grep ss-server | grep -v grep | awk '{print $2}')
 nohup ss-server -c /root/ss/config.json > /dev/null 2>&1 &
 
+#Client.firewalld
+firewall-cmd --zone=public --add-port=443/tcp
+firewall-cmd --permanent --zone=public --add-port=443/tcp
+
 #Client.config
 cat > /root/ss/config.json <<-EOF
 {
@@ -63,6 +67,6 @@ export PATH=$PATH:/root/ss/shadowsocks-libev/src
 kill $(ps -ef | grep ss-local | grep -v grep | awk '{print $2}')
 nohup ss-local -c /root/ss/config.json > /dev/null 2>&1 &
 
-
-
-
+#Client.firewalld
+firewall-cmd --zone=public --add-port=1080/tcp
+firewall-cmd --permanent --zone=public --add-port=1080/tcp
