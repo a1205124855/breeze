@@ -7,7 +7,7 @@
    echo 'net.core.default_qdisc=fq' |  tee -a /etc/sysctl.conf
    echo 'net.ipv4.tcp_congestion_control=bbr' |  tee -a /etc/sysctl.conf
    sysctl -p
-   cp -rf /boot/grub2/grub.cfg /boot/grub2/grub.cfg.$(date "+%F").bak
+   cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.$(date "+%F").bak
    grub2-mkconfig -o /boot/grub2/grub.cfg
    grub2-set-default 0
    read -p "需要重启VPS，再次执行脚本选择安装wireguard，是否现在重启 ? [Y/n] :" yn
