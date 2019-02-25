@@ -1,5 +1,5 @@
 #/bin/bash
-cp /etc/v2ray/config.json /etc/v2ray/$(date "+ %Y%m%d%H%M%S").bak
+cp /etc/v2ray/config.json /etc/v2ray/v2ray.config.$(date "+%Y%m%d%H%M%S").bak
 cat > /etc/v2ray/config.json <<-EOF
 {
   "log" : {
