@@ -1,0 +1,9 @@
+服务端:
+yum install wget
+wget https://github.com/coyove/goflyway/releases/download/2.0.0rc1/goflyway_linux_amd64.tar.gz
+tar -zxvf goflyway_linux_amd64.tar.gz
+nohup goflyway -k="密码" -l=":443" -proxy-pass="http://mirror.clarkson.edu/" > /dev/null 2>&1 &
+
+win客户端:
+goflyway.exe -up="cf://域名:80" -k="密码" -l=":1081" -web-port="8101" -lv=dbg -g
+goflyway.exe -up="cfs://郁闷:443" -k="密码" -l=":1081" -web-port="8101" -lv=dbg -g
