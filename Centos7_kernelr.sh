@@ -3,7 +3,6 @@
    rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
    rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
    yum --enablerepo=elrepo-kernel install kernel-ml kernel-ml-devel -y
-   echo 'net.ipv4.ip_forward=1' | tee -a /etc/sysctl.conf
    cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.$(date "+%F").bak
    grub2-mkconfig -o /boot/grub2/grub.cfg
    grub2-set-default 0
