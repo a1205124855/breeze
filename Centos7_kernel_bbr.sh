@@ -10,7 +10,7 @@
    cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.$(date "+%F").bak
    grub2-mkconfig -o /boot/grub2/grub.cfg
    grub2-set-default 0
-   read -p "需要重启VPS，再次执行脚本选择安装wireguard，是否现在重启 ? [Y/n] :" yn
+   read -p "需要重启VPS，是否现在重启 ? [Y/n] :" yn
       [ -z "${yn}" ] && yn="y"
          if [[ $yn == [Yy] ]]; then
             echo -e "VPS 重启中..."
