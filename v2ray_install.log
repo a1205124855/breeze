@@ -1,0 +1,3 @@
+#install
+yum install curl -y
+bash <(curl -L -s https://install.direct/go.sh)
