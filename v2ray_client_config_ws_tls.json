@@ -1,0 +1,120 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [{
+      "port": 1083,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": true
+      }
+    }],
+    "dns":{
+      "hosts": {
+        "baidu.com": "127.0.0.1"
+      },
+      "servers": [
+        "8.8.8.8",
+        "8.8.4.4",
+        "localhost"
+      ],
+      "tag": "dns_inbound"
+    },
+    "outbounds": [{
+        "protocol": "vmess",
+        "settings": {
+            "vnext": [
+                {
+                    "address": "v2.baidu.com",
+                    "port": 443,
+                    "users": [
+                        {
+                            "id": "27848739-7e62-4138-9fd3-098a63964b6b",
+                            "alterId": 64,
+							"security":"auto"
+                        }
+                    ]
+                }
+            ]
+        },
+        "mux": {
+            "enabled": true,
+            "concurrency": 8
+        },
+        "streamSettings": {
+            "security": "tls",
+			"network":"ws",
+            "tlsSettings": {
+                "allowInsecure": false
+            },
+            "wsSettings":{
+                "path":"/v2/"
+            }
+        }
+    },
+	{
+       "protocol": "freedom",
+       "settings": {},
+       "tag": "direct"
+    }
+    ],
+    "routing": {
+        "strategy": "rules",
+        "settings": {
+            "rules": [
+                {
+                    "type": "field",
+                    "port": "54-79",
+                    "outboundTag": "direct"
+                },
+                {
+                    "type": "field",
+                    "port": "81-442",
+                    "outboundTag": "direct"
+                },
+                {
+                    "type": "field",
+                    "port": "444-65535",
+                    "outboundTag": "direct"
+                },
+                {
+                    "type": "field",
+                    "domain": [
+                        "gc.kis.scr.kaspersky-labs.com"
+                    ],
+                    "outboundTag": "direct"
+                },
+                {
+                    "type": "chinasites",
+                    "outboundTag": "direct"
+                },
+                {
+                    "type": "field",
+                    "ip": [
+                        "0.0.0.0/8",
+                        "10.0.0.0/8",
+                        "100.64.0.0/10",
+                        "127.0.0.0/8",
+                        "169.254.0.0/16",
+                        "172.16.0.0/12",
+                        "192.0.0.0/24",
+                        "192.0.2.0/24",
+                        "192.168.0.0/16",
+                        "198.18.0.0/15",
+                        "198.51.100.0/24",
+                        "203.0.113.0/24",
+                        "::1/128",
+                        "fc00::/7",
+                        "fe80::/10"
+                    ],
+                    "outboundTag": "direct"
+                },
+                {
+                    "type": "chinaip",
+                    "outboundTag": "direct"
+                }
+            ]
+        }
+    }
+}
