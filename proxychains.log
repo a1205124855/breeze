@@ -1,0 +1,8 @@
+#!/bin/bash
+apt install proxychains
+vim /etc/proxychains.conf
+socks4 127.0.0.1 9095  -->  socks5 127.0.0.1 1080
+
+在需要代理的命令前加上 proxychains4 ，如：
+proxychains wget http://xxx.com/xxx.zip
+
